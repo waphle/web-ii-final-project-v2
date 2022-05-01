@@ -1,9 +1,9 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext } from 'react'; //implements react into the frontend
 
-import Card from '../../shared/components/UIElements/Card';
-import Button from '../../shared/components/FormElements/Button';
-import Modal from '../../shared/components/UIElements/Modal';
-import Map from '../../shared/components/UIElements/Map';
+import Card from '../../shared/components/UIElements/Card';//creates a card
+import Button from '../../shared/components/FormElements/Button'; //creates a button
+import Modal from '../../shared/components/UIElements/Modal';//creates a modal
+import Map from '../../shared/components/UIElements/Map';//creates a map
 import ErrorModal from '../../shared/components/UIElements/ErrorModal';
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
 import { AuthContext } from '../../shared/context/auth-context';
@@ -31,7 +31,7 @@ const PlaceItem = props => {
   const confirmDeleteHandler = async () => {
     setShowConfirmModal(false);
     try {
-      await sendRequest(
+      await sendRequest( //take a request from the api in the backend
         `http://localhost:5000/api/places/${props.id}`,
         'DELETE'
       );
@@ -62,7 +62,7 @@ const PlaceItem = props => {
         onCancel={cancelDeleteHandler}
         header="Are you sure?"
         footerClass="place-item__modal-actions"
-        footer={
+        footer={//creates two buttons, one to cancel deleting a place, one to confirm deleting a place
           <React.Fragment>
             <Button inverse onClick={cancelDeleteHandler}>
               CANCEL
@@ -71,7 +71,7 @@ const PlaceItem = props => {
               DELETE
             </Button>
           </React.Fragment>
-        }
+        }//html below asking for confirmation in deleting a place
       >
         <p>
           Do you want to proceed and delete this place? Please note that it

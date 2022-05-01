@@ -39,7 +39,7 @@ const UpdatePlace = () => {
   useEffect(() => {
     const fetchPlace = async () => {
       try {
-        const responseData = await sendRequest(
+        const responseData = await sendRequest(//finds the place that is stored in an api
           `http://localhost:5000/api/places/${placeId}`
         );
         setLoadedPlace(responseData.place);
@@ -65,7 +65,7 @@ const UpdatePlace = () => {
   const placeUpdateSubmitHandler = async event => {
     event.preventDefault();
     try {
-      await sendRequest(
+      await sendRequest(//sends the updated place back to the api
         `http://localhost:5000/api/places/${placeId}`,
         'PATCH',
         JSON.stringify({
@@ -80,7 +80,7 @@ const UpdatePlace = () => {
     } catch (err) {}
   };
 
-  if (isLoading) {
+  if (isLoading) {//shows a loading symbol while waiting
     return (
       <div className="center">
         <LoadingSpinner />
@@ -88,7 +88,7 @@ const UpdatePlace = () => {
     );
   }
 
-  if (!loadedPlace && !error) {
+  if (!loadedPlace && !error) {//if the place is not able to be found within the api, error will show
     return (
       <div className="center">
         <Card>
@@ -104,7 +104,7 @@ const UpdatePlace = () => {
       {!isLoading && loadedPlace && (
         <form className="place-form" onSubmit={placeUpdateSubmitHandler}>
           <Input
-            id="title"
+            id="title"//the requested data that would be updated for a place, the title and the description. If the place has an updated address it is a new place, so that cannpt be updated
             element="input"
             type="text"
             label="Title"

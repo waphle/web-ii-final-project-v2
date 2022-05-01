@@ -1,9 +1,9 @@
 const uuid = require('uuid/v4');
 const { validationResult } = require('express-validator');
-const mongoose = require('mongoose');
+const mongoose = require('mongoose'); //includes mongoose in the project 
 
-const HttpError = require('../models/http-error');
-const getCoordsForAddress = require('../util/location');
+const HttpError = require('../models/http-error'); //includes http errors if something goes wrong
+const getCoordsForAddress = require('../util/location'); //includes the ability to get the address for a given location by the user
 const Place = require('../models/place');
 const User = require('../models/user');
 
@@ -12,16 +12,16 @@ const getPlaceById = async (req, res, next) => {
 
   let place;
   try {
-    place = await Place.findById(placeId);
+    place = await Place.findById(placeId); //find a place based on an address given from the user
   } catch (err) {
-    const error = new HttpError(
+    const error = new HttpError( //happens if nothing is inputed by the user
       'Something went wrong, could not find a place.',
       500
     );
     return next(error);
   }
 
-  if (!place) {
+  if (!place) { //this sends out the error 'Could not find place for the provided id.' if no place is found using the given information
     const error = new HttpError(
       'Could not find place for the provided id.',
       404
@@ -40,7 +40,7 @@ const getPlacesByUserId = async (req, res, next) => {
   try {
     userWithPlaces = await User.findById(userId).populate('places');
   } catch (err) {
-    const error = new HttpError(
+    const error = new HttpError( //error that occurs if the site is not able to fetch an address
       'Fetching places failed, please try again later.',
       500
     );
@@ -48,7 +48,7 @@ const getPlacesByUserId = async (req, res, next) => {
   }
 
   // if (!places || places.length === 0) {
-  if (!userWithPlaces || userWithPlaces.places.length === 0) {
+  if (!userWithPlaces || userWithPlaces.places.length === 0) { //error that occurs if the user does not have any places for their id
     return next(
       new HttpError('Could not find places for the provided user id.', 404)
     );
@@ -59,7 +59,7 @@ const getPlacesByUserId = async (req, res, next) => {
 
 const createPlace = async (req, res, next) => {
   const errors = validationResult(req);
-  if (!errors.isEmpty()) {
+  if (!errors.isEmpty()) { //error that occurs if there is data trying to be passed that does not work
     return next(
       new HttpError('Invalid inputs passed, please check your data.', 422)
     );
@@ -74,7 +74,7 @@ const createPlace = async (req, res, next) => {
     return next(error);
   }
 
-  const createdPlace = new Place({
+  const createdPlace = new Place({ //creates a profile for the submitted address
     title,
     description,
     address,
@@ -84,7 +84,7 @@ const createPlace = async (req, res, next) => {
     creator
   });
 
-  let user;
+  let user; //finds a user and finds their place
   try {
     user = await User.findById(creator);
   } catch (err) {
@@ -95,7 +95,7 @@ const createPlace = async (req, res, next) => {
     return next(error);
   }
 
-  if (!user) {
+  if (!user) { //This error occurs if the wrong credentials are provided for a user
     const error = new HttpError('Could not find user for provided id.', 404);
     return next(error);
   }
@@ -122,7 +122,7 @@ const createPlace = async (req, res, next) => {
 
 const updatePlace = async (req, res, next) => {
   const errors = validationResult(req);
-  if (!errors.isEmpty()) {
+  if (!errors.isEmpty()) { //this error occurs if the incorrect data is inputed for finding an address
     return next(
       new HttpError('Invalid inputs passed, please check your data.', 422)
     );
@@ -185,14 +185,14 @@ const deletePlace = async (req, res, next) => {
     await place.creator.save({session: sess});
     await sess.commitTransaction();
   } catch (err) {
-    const error = new HttpError(
+    const error = new HttpError( //this happens if there was an attempt to delete a place, but it may not exist or some mistake was made
       'Something went wrong, could not delete place.',
       500
     );
     return next(error);
   }
   
-  res.status(200).json({ message: 'Deleted place.' });
+  res.status(200).json({ message: 'Deleted place.' }); //responds if a place was successfully deleted
 };
 
 exports.getPlaceById = getPlaceById;

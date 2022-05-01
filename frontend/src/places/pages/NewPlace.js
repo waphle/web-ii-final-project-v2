@@ -14,7 +14,7 @@ import { useHttpClient } from '../../shared/hooks/http-hook';
 import { AuthContext } from '../../shared/context/auth-context';
 import './PlaceForm.css';
 
-const NewPlace = () => {
+const NewPlace = () => {//takes data about the place that is being requested, the name, a description of the place, and its address
   const auth = useContext(AuthContext);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [formState, inputHandler] = useForm(
@@ -40,7 +40,7 @@ const NewPlace = () => {
   const placeSubmitHandler = async event => {
     event.preventDefault();
     try {
-      await sendRequest(
+      await sendRequest(//takes a request from the api in the backend
         'http://localhost:5000/api/places',
         'POST',
         JSON.stringify({
@@ -61,7 +61,7 @@ const NewPlace = () => {
       <form className="place-form" onSubmit={placeSubmitHandler}>
         {isLoading && <LoadingSpinner asOverlay />}
         <Input
-          id="title"
+          id="title"//takes data for the title of the place, and returns an error if said values cannot be used
           element="input"
           type="text"
           label="Title"
@@ -70,7 +70,7 @@ const NewPlace = () => {
           onInput={inputHandler}
         />
         <Input
-          id="description"
+          id="description"//takes data for the description of the place, and returns an error if said values cannot be used or if it is shorter than 5 characters
           element="textarea"
           label="Description"
           validators={[VALIDATOR_MINLENGTH(5)]}
@@ -78,7 +78,7 @@ const NewPlace = () => {
           onInput={inputHandler}
         />
         <Input
-          id="address"
+          id="address"//takes data for the address of the place, and returns an error if there is nothing there
           element="input"
           label="Address"
           validators={[VALIDATOR_REQUIRE()]}

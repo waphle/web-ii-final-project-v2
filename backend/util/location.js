@@ -3,7 +3,7 @@ const axios = require('axios');
 const HttpError = require('../models/http-error');
  
 const getCoordsForAddress = async (address) => {
-  const response = await axios.get(
+  const response = await axios.get( //uses geocode to get coordinates for a place
     'https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates',
     {
       params: {
