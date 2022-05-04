@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 
 import './Backdrop.css';
 
-// Backdrop image
+// Backdrop image. Links to an image Jeff made
 const Backdrop = props => {
   return ReactDOM.createPortal(
     <div className="backdrop" onClick={props.onClick}></div>,

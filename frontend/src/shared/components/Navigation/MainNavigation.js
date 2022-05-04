@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import MainHeader from './MainHeader';
-import NavLinks from './NavLinks';
+// Import functions from other navigation related files
+import MainHeader from './MainHeader'; // import from MainHeader.js
+import NavLinks from './NavLinks'; // import NavLinks.js
 import SideDrawer from './SideDrawer';
-import Backdrop from '../UIElements/Backdrop';
+import Backdrop from '../UIElements/Backdrop'; // background UI elements (ie. wallpaper, color, etc)
 import './MainNavigation.css';
 
 const MainNavigation = props => {

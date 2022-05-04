@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import './Button.css';
 
+// Button controls. Includes its styleing from its own css file, and includes its functionality. 
 const Button = props => {
   if (props.href) {
     return (

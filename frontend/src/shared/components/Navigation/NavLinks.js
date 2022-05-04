@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { AuthContext } from '../../context/auth-context';
 import './NavLinks.css';
 
+// Nvaigation linking to other webpage .js files
 const NavLinks = props => {
   const auth = useContext(AuthContext);
 
