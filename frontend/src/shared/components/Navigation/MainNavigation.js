@@ -37,7 +37,8 @@ const MainNavigation = props => {
           <span />
         </button>
         <h1 className="main-navigation__title">
-          <Link to="/">YourPlaces</Link>
+          <Link to="/">RadNet Radiation Data</Link>
+          {/* the name inside of the header */}
         </h1>
         <nav className="main-navigation__header-nav">
           <NavLinks />

@@ -101,7 +101,7 @@ const Auth = () => {
       <ErrorModal error={error} onClear={clearError} />
       <Card className="authentication">
         {isLoading && <LoadingSpinner asOverlay />}
-        <h2>Login Required</h2>
+        <h2>Please Login</h2>
         <hr />
         <form onSubmit={authSubmitHandler}>
           {!isLoginMode && (
@@ -109,7 +109,7 @@ const Auth = () => {
               element="input"
               id="name"
               type="text"
-              label="Your Name"
+              label="Userame"
               validators={[VALIDATOR_REQUIRE()]}
               errorText="Please enter a name."
               onInput={inputHandler}
@@ -130,7 +130,7 @@ const Auth = () => {
             type="password"
             label="Password"
             validators={[VALIDATOR_MINLENGTH(6)]}
-            errorText="Please enter a valid password, at least 6 characters."
+            errorText="Please enter a valid password, it must be least 6 characters."
             onInput={inputHandler}
           />
           <Button type="submit" disabled={!formState.isValid}>

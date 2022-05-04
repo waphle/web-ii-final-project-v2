@@ -39,7 +39,7 @@ const UpdatePlace = () => {
   useEffect(() => {
     const fetchPlace = async () => {
       try {
-        const responseData = await sendRequest(//finds the place that is stored in an api
+        const responseData = await sendRequest(//finds the place that is stored in mongo
           `http://localhost:5000/api/places/${placeId}`
         );
         setLoadedPlace(responseData.place);
@@ -92,7 +92,7 @@ const UpdatePlace = () => {
     return (
       <div className="center">
         <Card>
-          <h2>Could not find place!</h2>
+          <h2>Could not find area!</h2>
         </Card>
       </div>
     );
@@ -115,17 +115,18 @@ const UpdatePlace = () => {
             initialValid={true}
           />
           <Input
-            id="description"
+            id="description"//asking for data about the area you are in. 
             element="textarea"
             label="Description"
             validators={[VALIDATOR_MINLENGTH(5)]}
-            errorText="Please enter a valid description (min. 5 characters)."
+            errorText="Please enter a valid description of your area (min. 5 characters)."
             onInput={inputHandler}
             initialValue={loadedPlace.description}
             initialValid={true}
           />
           <Button type="submit" disabled={!formState.isValid}>
             UPDATE PLACE
+            {/* submit button */}
           </Button>
         </form>
       )}
