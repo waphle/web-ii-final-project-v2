@@ -21,6 +21,7 @@ router.post(
   usersController.signup
 );
 
+// Posts the user's login credentials
 router.post('/login', usersController.login);
 
 module.exports = router;
