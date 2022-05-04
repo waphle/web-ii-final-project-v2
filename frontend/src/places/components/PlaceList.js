@@ -6,12 +6,12 @@ import Button from '../../shared/components/FormElements/Button';
 import './PlaceList.css';
 
 const PlaceList = props => {
-  if (props.items.length === 0) {//returns 'No places found. Maybe create one?' if there is no place detected
+  if (props.items.length === 0) {//returns 'error' if there is no area detected
     return (
       <div className="place-list center">
         <Card>
-          <h2>No places found. Maybe create one?</h2>
-          <Button to="/places/new">Share Place</Button>
+          <h2>No areas found. Maybe put one in?</h2>
+          <Button to="/places/new">Share Area</Button>
         </Card>
       </div>
     );
