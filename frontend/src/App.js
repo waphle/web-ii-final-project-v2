@@ -15,15 +15,18 @@ import Auth from './user/pages/Auth';
 import MainNavigation from './shared/components/Navigation/MainNavigation';
 import { AuthContext } from './shared/context/auth-context';
 
+// Default settings for log-in: is false, meaning the website is not logging in the user.
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userId, setUserId] = useState(false);
 
+  // Call in login id's. Once user logs in, program sets a login has been made.
   const login = useCallback(uid => {
     setIsLoggedIn(true);
     setUserId(uid);
   }, []);
 
+  // Call in user has logged out. 
   const logout = useCallback(() => {
     setIsLoggedIn(false);
     setUserId(null);
@@ -31,6 +34,7 @@ const App = () => {
 
   let routes;
 
+  // When user has logged in, the program recalls which routes a logged user has access to and grants it to them.
   if (isLoggedIn) {
     routes = (
       <Switch>
@@ -49,7 +53,7 @@ const App = () => {
         <Redirect to="/" />
       </Switch>
     );
-  } else {
+  } else { // If not logged in, the program needs to authenticate the user before granting access priveledges. 
     routes = (
       <Switch>
         <Route path="/" exact>
@@ -66,6 +70,7 @@ const App = () => {
     );
   }
 
+  // Authenticates values of the user credentials. Navigates the locations of the routes and authenticates. 
   return (
     <AuthContext.Provider
       value={{
