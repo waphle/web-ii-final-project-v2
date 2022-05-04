@@ -22,6 +22,7 @@ const UpdatePlace = () => {
   const placeId = useParams().placeId;
   const history = useHistory();
 
+  // User form values, true or false. Validation
   const [formState, inputHandler, setFormData] = useForm(
     {
       title: {

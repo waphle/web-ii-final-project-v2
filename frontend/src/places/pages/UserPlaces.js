@@ -12,6 +12,7 @@ const UserPlaces = () => {
 
   const userId = useParams().userId;
 
+  // Loads the response data under local host 5000
   useEffect(() => {
     const fetchPlaces = async () => {
       try {
