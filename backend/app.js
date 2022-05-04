@@ -37,7 +37,7 @@ app.use((error, req, res, next) => {
   res.json({ message: error.message || 'An unknown error occurred!' });
 });
 
-mongoose //connects mongoose under waphle's api
+mongoose //connects mongoose under mongodb API
   .connect(
     `mongodb+srv://api_waphle:apiwaphleBruv0706@cluster0.acjvx.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
   )
