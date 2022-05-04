@@ -28,7 +28,10 @@ For MongoDB to run locally on your machine, download the [MongoDB Community Serv
     2. use Cluster0
     3. show collections
     4. db.radiation.find().pretty()
-Step 15 checks if the data is stored properly on your local MongoDB server database.
+ 
+Step 15 checks if the data is stored properly on your local MongoDB server database. See the image below to see how it should compile.
+
+![MongoDB successfully loaded locally.](./mongoDB_local_working.png)
 
 ### Issues with using MongoDB
 We had issue with importing .csv files into MongoDB Atlas, so we opted to run it locally. However, since we did not cover how to use MongoDB locally, we were unable to connect the local database to our codebase. 
