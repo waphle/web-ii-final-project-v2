@@ -6,13 +6,13 @@ Jeff Zhang and Joseph Chromicz
 ### Project Goal and Problem Addressed
 The goal for this project is to see radiation trends in Washington, DC’s environment by routinely analyzing air, precipitation and drinking water samples. According to the United States Environmental Protection Agency (EPA), the RadNet air monitor system allows scientists to help estimate the potential radiation dose to humans, and help public officials use RadNet data to help make science-based decisions about protecting the public.
 
-### MongoDB Local Setup and Issues with using Atlas
+### MongoDB Local Setup
 For MongoDB to run locally on your machine, download the [MongoDB Community Server](https://www.mongodb.com/try/download/community). Then, download the [MongoDB Developer Database Tools](https://www.mongodb.com/try/download/database-tools). Once you have them installed, follow these instructions:
 
-1. Go to Control Panel
-2. Click on "System and Security"
-3. Click on "System." You will be redirected to the "About" page in settings/
-4. Click on "Advanced System Settings"
+1. Go to Control Panel.
+2. Click on "System and Security."
+3. Click on "System." You will be redirected to the "About" page in settings.
+4. Click on "Advanced System Settings."
 5. Click on "Environmental Variables..."
 6. Under the "System variables" section, click on the "Path" directory to highlight it. Then click the "Edit" button below. 
 7. Click on "New" in the top right corner. A new environmental variable should be highlighted.
@@ -28,5 +28,7 @@ For MongoDB to run locally on your machine, download the [MongoDB Community Serv
     2. use Cluster0
     3. show collections
     4. db.radiation.find().pretty()
-
 Step 15 checks if the data is stored properly on your local MongoDB server database.
+
+### Issues with using MongoDB
+We had issue with importing .csv files into MongoDB Atlas, so we opted to run it locally. However, since we did not cover how to use MongoDB locally, we were unable to connect the local database to our codebase. 
