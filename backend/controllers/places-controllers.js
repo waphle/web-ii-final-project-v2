@@ -54,7 +54,7 @@ const getPlacesByUserId = async (req, res, next) => {
     );
   }
 
-  res.json({ places: userWithPlaces.places.map(place => place.toObject({ getters: true })) });
+  res.json({ places: userWithPlaces.places.map(place => place.toObject({ getters: true })) }); 
 };
 
 const createPlace = async (req, res, next) => {
@@ -67,7 +67,7 @@ const createPlace = async (req, res, next) => {
 
   const { title, description, address, creator } = req.body;
 
-  let coordinates;
+  let coordinates; 
   try {
     coordinates = await getCoordsForAddress(address);
   } catch (error) {
@@ -102,6 +102,7 @@ const createPlace = async (req, res, next) => {
 
   console.log(user);
 
+  // Initiate mongodb/mongoose. Starts fetching and storing data. 
   try {
     const sess = await mongoose.startSession();
     sess.startTransaction();
@@ -120,6 +121,7 @@ const createPlace = async (req, res, next) => {
   res.status(201).json({ place: createdPlace });
 };
 
+// Validation check and updating functions for updatePlace
 const updatePlace = async (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) { //this error occurs if the incorrect data is inputed for finding an address
@@ -131,6 +133,7 @@ const updatePlace = async (req, res, next) => {
   const { title, description } = req.body;
   const placeId = req.params.pid;
 
+  // Error when new place can not be updated
   let place;
   try {
     place = await Place.findById(placeId);
@@ -142,9 +145,11 @@ const updatePlace = async (req, res, next) => {
     return next(error);
   }
 
+  // Place title and description caching
   place.title = title;
   place.description = description;
 
+  // Error when saving the new place's info is unsuccessful
   try {
     await place.save();
   } catch (err) {
@@ -158,6 +163,7 @@ const updatePlace = async (req, res, next) => {
   res.status(200).json({ place: place.toObject({ getters: true }) });
 };
 
+// Function to delete a place
 const deletePlace = async (req, res, next) => {
   const placeId = req.params.pid;
 
@@ -195,6 +201,7 @@ const deletePlace = async (req, res, next) => {
   res.status(200).json({ message: 'Deleted place.' }); //responds if a place was successfully deleted
 };
 
+// Export the cached data. Can be retrieved elsewhere via import
 exports.getPlaceById = getPlaceById;
 exports.getPlacesByUserId = getPlacesByUserId;
 exports.createPlace = createPlace;

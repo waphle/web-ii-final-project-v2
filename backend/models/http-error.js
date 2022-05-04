@@ -1,3 +1,4 @@
+// Class to check for HTTP errors. 
 class HttpError extends Error {
   constructor(message, errorCode) {
     super(message);
