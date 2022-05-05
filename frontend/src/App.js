@@ -88,4 +88,5 @@ const App = () => {
   );
 };
 
+//makes app able to be exported
 export default App;
